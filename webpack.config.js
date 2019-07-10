@@ -15,7 +15,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: require('html-webpack-template'),
       inject: false,
-      appMountId: 'app',
+      appMountId: 'root',
       devServer: 'https://localhost:3000'
     })
   ],
