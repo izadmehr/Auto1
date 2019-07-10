@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
 
-export const Index = () => {
+export const Cars = () => {
   return 'Welcome!';
 };
