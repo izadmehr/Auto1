@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 
-import { Cars } from './views/cars';
+import { AppRouter } from './App';
 import '../server';
 
-render(<Cars />, document.getElementById('root'));
+render(<AppRouter />, document.getElementById('root'));

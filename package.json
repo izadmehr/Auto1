@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-router-dom": "^4.3.4",
     "axios": "0.18.0",
     "faker": "4.1.0",
     "nanoid": "2.0.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-router-dom": "^5.0.1",
     "styled-components": "^4.3.2",
     "xhr-mock": "2.4.1"
   },
