@@ -1,0 +1,186 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "plugin:prettier/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["prettier", "jsx-a11y"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "es6": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx"
+    ] }],
+    "comma-dangle": 0,
+    "no-const-assign": "warn",
+    "no-this-before-super": "warn",
+    "no-undef": "error",
+    "no-unreachable": "warn",
+    "no-unused-vars": "error",
+    "constructor-super": "warn",
+    "valid-typeof": "warn",
+    "react/display-name": 1,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-console": 0,
+    "no-class-assign": 0,
+    "react/prop-types": 0,
+    "react/destructuring-assignment": "off",
+    "import/prefer-default-export": "off",
+    "no-use-before-define": "off",
+    "camelcase": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": [
+          "builtin",
+          "external",
+          // Built-in & external types are first
+          "internal",
+          [
+            "sibling",
+            "parent"
+          ],
+          // Then sibling and parent types. They can be mingled together
+          "index"
+          // Then the index file
+          // Then the rest: internal and external type
+        ]
+      }
+    ],
+    "padding-line-between-statements": [
+      2,
+      // Always require blank lines after directive (like "use-strict"), except between directives
+      {
+        "blankLine": "always",
+        "prev": "directive",
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": "directive",
+        "next": "directive"
+      },
+      // Always require blank lines after import, except between imports
+      {
+        "blankLine": "always",
+        "prev": "import",
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": "import",
+        "next": "import"
+      },
+      // Always require blank lines before and after every sequence of variable declarations and export
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "const",
+          "let",
+          "var",
+          "export"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "const",
+          "let",
+          "var",
+          "export"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let",
+          "var",
+          "export"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var",
+          "export"
+        ]
+      },
+      // Always require blank lines before and after class declaration, if, do/while, switch, try
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "if",
+          "class",
+          "for",
+          "do",
+          "while",
+          "switch",
+          "try"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "if",
+          "class",
+          "for",
+          "do",
+          "while",
+          "switch",
+          "try"
+        ],
+        "next": "*"
+      },
+      // Always require blank lines before return statements
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreStrings": true
+      }
+    ],
+    "object-property-newline": "error",
+    "react/sort-comp": "off",
+    "class-methods-use-this": "off",
+    "react/no-multi-comp": "off",
+    "radix": ["error", "as-needed"],
+    "@typescript-eslint/explicit-member-accessibility": 0
+  }
+}

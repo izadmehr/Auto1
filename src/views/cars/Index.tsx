@@ -1,6 +1,5 @@
 import * as React from 'react';
-import axios from 'axios';
 
 export const Cars = () => {
-  return 'Welcome!';
+  return <div>Welcome!</div>;
 };
