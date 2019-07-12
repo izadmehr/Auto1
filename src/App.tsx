@@ -1,26 +1,16 @@
+import { hot } from "react-hot-loader/root";
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Cars } from './views/cars';
 import { NoMatch } from './views/404';
+import Header from './views/layout/Header';
 
-export function AppRouter(): JSX.Element {
+ function AppRouter(): JSX.Element {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about/">About</Link>
-            </li>
-            <li>
-              <Link to="/users/">Users</Link>
-            </li>
-          </ul>
-        </nav>
+        <Header />
 
         <Route path="/" exact component={Cars} />
         <Route component={NoMatch} />
@@ -28,3 +18,5 @@ export function AppRouter(): JSX.Element {
     </Router>
   );
 }
+
+export default hot(AppRouter);
