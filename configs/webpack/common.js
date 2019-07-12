@@ -46,10 +46,7 @@ module.exports = {
   plugins: [
     new CheckerPlugin(),
     new HtmlWebpackPlugin({
-      template: require('html-webpack-template'),
-      inject: false,
-      appMountId: 'root',
-      devServer: 'https://localhost:3000'
+      template: 'index.html.ejs'
     }),
     new ExtractCssChunks({
       filename: '[name].css',
