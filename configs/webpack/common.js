@@ -2,7 +2,6 @@
 const { resolve } = require('path');
 
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = {
@@ -12,7 +11,11 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom'
     }
   },
-  context: resolve(__dirname, '../../src'),
+  output: {
+    filename: 'bundle.js',
+    path: resolve(__dirname, 'dist'),
+    publicPath: '/dist/'
+  },
   module: {
     rules: [
       {
@@ -45,7 +48,6 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new HtmlWebpackPlugin({ template: 'index.html.ejs' }),
     new ExtractCssChunks({
       filename: '[name].css',
       chunkFilename: '[id].css',

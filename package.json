@@ -41,6 +41,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "express": "^4.17.1",
     "extract-css-chunks-webpack-plugin": "^4.5.5",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -54,14 +55,15 @@
     "webpack": "4.35.3",
     "webpack-cli": "3.3.5",
     "webpack-dev-server": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1"
   },
   "scripts": {
     "lint": "eslint ./src/**/*.ts*",
     "lint:fix": "eslint ./src/**/*.ts* --fix",
     "start": "yarn run start-dev",
-    "start-dev": "webpack-dev-server --config=configs/webpack/dev.js",
-    "start-prod": "yarn run build && node express.js",
+    "start-dev": "NODE_ENV=dev node server.js ",
+    "start-prod": "NODE_ENV=prodction yarn run build && node express.js",
     "test": "jest --watch --coverage --config=configs/jest.config.js"
   }
 }
