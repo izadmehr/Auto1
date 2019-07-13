@@ -18,5 +18,6 @@ module.exports = {
   globals: {
     DEVELOPMENT: false,
     FAKE_SERVER: false
-  }
+  },
+  setupFilesAfterEnv: ['@testing-library/react/cleanup-after-each']
 };
