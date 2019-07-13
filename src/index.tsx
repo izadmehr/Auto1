@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 
-import AppRouter from './App';
-import '../server';
+import App from './App';
 
-render(<AppRouter />, document.getElementById('root'));
+const rootEl = document.getElementById('root');
+
+render(<App />, rootEl);
