@@ -45,9 +45,7 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'index.html.ejs'
-    }),
+    new HtmlWebpackPlugin({ template: 'index.html.ejs' }),
     new ExtractCssChunks({
       filename: '[name].css',
       chunkFilename: '[id].css',
