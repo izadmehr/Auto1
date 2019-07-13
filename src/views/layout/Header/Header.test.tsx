@@ -1,10 +1,30 @@
 // ETA: 1 Hour
-describe('<Header />', () => {
+import * as React from 'react';
+import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Header from './index';
+
+describe('<Header />', (): void => {
   it('should render <Logo />', () => {
-    expect(false).toBe(true);
+    const { getByAltText } = render(
+      <Router>
+        <Header />
+      </Router>
+    );
+
+    expect(getByAltText('Auto1 logo')).toBeDefined();
   });
 
-  it('should render "My Orders" <Link to="/favorites" />', () => {
-    expect(false).toBe(true);
+  it('should render Links', () => {
+    const { getByText } = render(
+      <Router>
+        <Header />
+      </Router>
+    );
+
+    expect(getByText('Cars')).toBeDefined();
+    expect(getByText('Sell')).toBeDefined();
+    expect(getByText('My Orders')).toBeDefined();
   });
 });

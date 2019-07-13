@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { HeaderContainer, HeaderImg, HeaderLink, HeaderRight } from './Styles';
+import { HeaderContainer, Logo, HeaderLink, HeaderRight } from './Styles';
 
 const Auto1Logo = require('../../../assets/images/logo-auto1.png');
 
-function Index(): JSX.Element {
+function Header(): JSX.Element {
   return (
     <HeaderContainer>
-      <HeaderImg src={Auto1Logo} alt="Auto1 logo" />
+      <Logo src={Auto1Logo} alt="Auto1 logo" />
       <HeaderRight>
         <li>
           <HeaderLink to="/">Cars</HeaderLink>
@@ -23,4 +23,4 @@ function Index(): JSX.Element {
   );
 }
 
-export default Index;
+export default Header;

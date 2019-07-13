@@ -182,6 +182,7 @@
     "react/no-multi-comp": "off",
     "radix": ["error", "as-needed"],
     "@typescript-eslint/explicit-member-accessibility": 0,
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-var-requires": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.tsx", "configs/**", "server.js"]}]
   }
 }

@@ -11,10 +11,12 @@ export const HeaderContainer = styled.nav`
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-bottom: 1px solid ${colors.lightGray};
 `;
 
-export const HeaderImg = styled.img`
+export const Logo = styled.img`
   width: 140px;
+  margin-left: 1.5rem;
 `;
 
 export const HeaderRight = styled.ul`
@@ -28,7 +30,7 @@ export const HeaderRight = styled.ul`
 `;
 
 export const HeaderLink = styled(Link)`
-  color: ${colors.black};
+  color: ${colors.darkGray};
   text-decoration: none;
   :hover {
     text-decoration: underline;
