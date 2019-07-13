@@ -1,8 +1,7 @@
 // shared config (dev and prod)
-const { resolve } = require('path');
+const path = require('path');
 
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = {
   resolve: {
@@ -13,7 +12,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/'
   },
   module: {
@@ -29,15 +28,6 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        use: [
-          'cache-loader',
-          ExtractCssChunks.loader,
-          'css-loader',
-          'clean-css-loader'
-        ]
-      },
-      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
@@ -46,14 +36,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CheckerPlugin(),
-    new ExtractCssChunks({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-      hot: true
-    })
-  ],
+  plugins: [new CheckerPlugin()],
   performance: {
     hints: false
   }
