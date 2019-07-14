@@ -11,7 +11,6 @@ import configureStore, {
   history,
   sagaMiddleware
 } from './stores/configureStore';
-import '../server/index';
 
 const store = configureStore();
 

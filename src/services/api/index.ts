@@ -2,6 +2,7 @@
 import apisauce, { ApiResponse } from 'apisauce';
 
 import { CarType } from '../../stores/cars';
+import { createServer, teardownServer } from '../../../server/index';
 
 export interface ApiType {
   getCars: (params: {
@@ -19,6 +20,9 @@ const create = (baseURL: string = ''): ApiType => {
     },
     timeout: 30000
   });
+
+  api.addRequestTransform((): void => createServer());
+  api.addResponseTransform((): void => teardownServer());
 
   const getCars = ({
     page = 1,
