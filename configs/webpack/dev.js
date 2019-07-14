@@ -17,7 +17,6 @@ module.exports = merge(commonConfig, {
   plugins: [
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.WatchIgnorePlugin([/server/])
+    new webpack.HotModuleReplacementPlugin()
   ]
 });

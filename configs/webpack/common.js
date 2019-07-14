@@ -18,11 +18,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: ['babel-loader', 'source-map-loader'],
-        exclude: /node_modules/
-      },
-      {
         test: /\.tsx?$/,
         use: ['babel-loader', 'awesome-typescript-loader'],
         exclude: /node_modules/
