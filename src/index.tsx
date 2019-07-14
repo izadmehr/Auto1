@@ -1,15 +1,27 @@
+import 'regenerator-runtime/runtime';
+
+import { ConnectedRouter } from 'connected-react-router';
 import * as React from 'react';
-import { render } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import store from './stores/configureStore';
+import { watcherSaga } from './sagas';
 import App from './App';
+import configureStore, {
+  history,
+  sagaMiddleware
+} from './stores/configureStore';
+import '../server/index';
 
-const rootEl = document.getElementById('root');
+const store = configureStore();
 
-render(
+sagaMiddleware.run(watcherSaga);
+
+ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
-  rootEl
+  document.getElementById('root') as HTMLElement
 );

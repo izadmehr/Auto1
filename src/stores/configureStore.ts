@@ -1,16 +1,27 @@
-import { createStore } from 'redux';
 import { createBrowserHistory } from 'history';
+import { applyMiddleware, createStore } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from './index';
+import createRootReducer from './index';
 
-// rehydrate state on app start
-const initialState = {};
+export const sagaMiddleware = createSagaMiddleware();
 
-// browser history
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
-// create store
-const store = createStore(rootReducer(history), initialState);
+history.listen((location, action) => {
+  console.log(action, location);
+});
 
-// export store singleton instance
-export default store;
+export default function configureStore() {
+  const store = createStore(
+    createRootReducer(history), // root reducer with router state
+    undefined,
+    composeWithDevTools(
+      applyMiddleware(routerMiddleware(history), sagaMiddleware)
+    )
+  );
+
+  return store;
+}

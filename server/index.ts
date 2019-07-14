@@ -1,4 +1,5 @@
 import mock from 'xhr-mock';
+
 import { getCars, getCar } from './controllers/cars';
 import { getColors } from './controllers/colors';
 import { getManufacturers } from './controllers/manufacturers';

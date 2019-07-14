@@ -9,7 +9,7 @@ const { Types, Creators } = createActions({
   getCarsFailure: ['error']
 });
 
-export const CarsTypes = Types;
+export const CarsActionsTypes = Types;
 export default Creators;
 
 export interface CarType {
@@ -25,35 +25,34 @@ export interface CarType {
   pictureUrl: string;
 }
 
-export type CarsState = Immutable.Immutable<{
+export type CarsType = Immutable.Immutable<CarType[]>;
+
+interface State {
   data: CarType[];
   getLoadingStatus: boolean;
   error: string;
   page: number;
-  dataTotalSize: number;
-}>;
+  totalPageCount: number;
+  totalCarsCount: number;
+}
+
+export type CarsState = Immutable.Immutable<State>;
 
 /* ------------- Initial State ------------- */
 
-export const INITIAL_STATE = Immutable<{
-  data: CarType[];
-  getLoadingStatus: boolean;
-  error: string;
-  page: number;
-  dataTotalSize: number;
-}>({
+export const INITIAL_STATE = Immutable<State>({
   data: [],
   getLoadingStatus: false,
   error: '',
   page: 0,
-  dataTotalSize: 0
+  totalPageCount: 0,
+  totalCarsCount: 0
 });
 
 /* ------------- Selectors ------------- */
 
-export const CarSelectors = {
-  getData: ({ cars }: { cars: CarsState }): Immutable.Immutable<CarType[]> =>
-    cars.data
+export const CarsSelectors = {
+  getData: ({ cars }: { cars: CarsState }): CarsType => cars.data
 };
 
 /* ------------- Reducers ------------- */
@@ -68,15 +67,22 @@ const successGetCars = (
   {
     data,
     page,
-    dataTotalSize = 0
-  }: { data: CarType[]; page: number; dataTotalSize: number }
+    totalCarsCount,
+    totalPageCount
+  }: {
+    data: CarType[];
+    page: number;
+    totalCarsCount: number;
+    totalPageCount: number;
+  }
 ): CarsState => {
   return state.merge({
     getLoadingStatus: false,
     error: '',
     data,
     page,
-    dataTotalSize
+    totalPageCount,
+    totalCarsCount
   });
 };
 
@@ -92,7 +98,8 @@ export const carsReducer = createReducer<
     type: string;
     data: CarType[];
     page: number;
-    dataTotalSize: number;
+    totalPageCount: number;
+    totalCarsCount: number;
     error: string;
   }
 >(INITIAL_STATE, {

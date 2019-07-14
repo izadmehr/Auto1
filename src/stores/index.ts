@@ -1,10 +1,14 @@
-import { combineReducers } from 'redux';
-import { History } from 'history';
+import { combineReducers, Reducer } from 'redux';
 import { connectRouter } from 'connected-react-router';
+import { History } from 'history';
 
-import { carsReducer } from './cars';
+import { carsReducer, CarsState } from './cars';
 
-const rootReducer = (history: History) =>
+export interface RootState {
+  cars: CarsState;
+}
+
+const rootReducer = (history: History): Reducer =>
   combineReducers({
     router: connectRouter(history),
     cars: carsReducer

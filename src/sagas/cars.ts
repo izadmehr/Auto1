@@ -16,14 +16,15 @@ export function* getCars(
   }
 ): SagaIterator {
   // @ts-ignore
-  const response = yield call(api, action.page);
+  const response = yield call(api.getCars, action.page, action.pageSize);
 
   if (response.ok) {
     yield put(
       CarActions.getCarsSuccess(
         response.data.data,
         action.page,
-        response.data.meta.totalRows
+        response.data.totalPageCount,
+        response.data.totalCarsCount
       )
     );
   } else {

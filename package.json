@@ -17,8 +17,10 @@
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.5",
     "reduxsauce": "^1.1.0",
+    "regenerator-runtime": "^0.13.2",
     "seamless-immutable": "^7.1.4",
     "styled-components": "^4.3.2",
     "xhr-mock": "2.4.1"

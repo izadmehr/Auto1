@@ -1,7 +1,8 @@
 // development config
+const { resolve } = require('path');
+
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const { resolve } = require('path');
 
 const commonConfig = require('./common');
 
@@ -16,6 +17,7 @@ module.exports = merge(commonConfig, {
   plugins: [
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.WatchIgnorePlugin([/server/])
   ]
 });
