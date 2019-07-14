@@ -72,7 +72,7 @@
     "lint": "eslint ./src/**/*.ts*",
     "lint:fix": "eslint ./src/**/*.ts* --fix",
     "start": "yarn run start-dev",
-    "start-dev": "NODE_ENV=dev node server.js ",
+    "start-dev": "NODE_ENV=dev node express.js ",
     "start-prod": "NODE_ENV=prodction yarn run build && node express.js",
     "test": "jest --watch --coverage --config=configs/jest.config.js"
   }
