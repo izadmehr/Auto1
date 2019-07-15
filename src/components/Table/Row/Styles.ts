@@ -9,7 +9,7 @@ export const RowContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   border: 1px solid ${colors.lightGray};
-  margin: 0.75rem;
+  margin-top: 0.75rem;
   padding: 0.75rem;
   cursor: pointer;
 `;

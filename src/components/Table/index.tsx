@@ -8,6 +8,7 @@ import carsActions, {
 } from '../../stores/cars';
 import { RootState } from '../../stores';
 import Row from './Row';
+import { CarsTableContainer } from './Styles';
 
 interface Props {
   cars: CarsType;
@@ -26,16 +27,14 @@ class Table extends Component<Props> {
   }
 
   render(): JSX.Element {
-    console.log('this.props.cars: ', this.props.cars);
-
     return (
-      <div>
+      <CarsTableContainer>
         {this.props.cars.map(
           (car: CarType): JSX.Element => (
             <Row key={car.uuid} car={car} />
           )
         )}
-      </div>
+      </CarsTableContainer>
     );
   }
 }
