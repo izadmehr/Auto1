@@ -23,6 +23,7 @@ export interface CarType {
   };
   fuelType: string;
   pictureUrl: string;
+  uuid: string;
 }
 
 export type CarsType = Immutable.Immutable<CarType[]>;

@@ -21,7 +21,7 @@ export function* getCars(
   if (response.ok) {
     yield put(
       CarActions.getCarsSuccess(
-        response.data.data,
+        response.data.cars,
         action.page,
         response.data.totalPageCount,
         response.data.totalCarsCount
