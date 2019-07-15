@@ -1,4 +1,5 @@
 import React, { Component, MouseEvent } from 'react';
+import Immutable from 'seamless-immutable';
 
 import {
   DropdownItem,
@@ -16,10 +17,10 @@ interface Item {
   value: string;
 }
 interface Props {
-  items: Item[];
+  items: Immutable.Immutable<Item[]>;
   title: string;
   selectItem: (selected: string) => void;
-  selectedItem: string;
+  dropdownLabel: string;
 }
 interface States {
   showMenu: boolean;
@@ -53,16 +54,13 @@ export class Dropdown extends Component<Props, States> {
 
   render(): JSX.Element {
     const { showMenu } = this.state;
-    const { items, title } = this.props;
-    const selectedItem =
-      items.find((item): boolean => item.value === this.props.selectedItem) ||
-      items[0];
+    const { items, title, dropdownLabel } = this.props;
 
     return (
       <MenuContainer>
         <DropdownTitle>{title}</DropdownTitle>
         <DropdownToggle type="button" onClick={this.showMenu}>
-          {selectedItem.label}
+          {dropdownLabel}
           {showMenu ? (
             <CaretUp fill={colors.lightGray} size={12} />
           ) : (

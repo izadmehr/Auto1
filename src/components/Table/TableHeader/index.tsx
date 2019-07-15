@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Immutable from 'seamless-immutable';
 
 import carsActions, { CarsSelectors } from '../../../stores/cars';
 import { RootState } from '../../../stores';
@@ -13,7 +14,7 @@ interface Props {
   selectedSort: string;
 }
 
-const sortItems = [
+const sortItems = Immutable([
   {
     label: 'None',
     value: ''
@@ -26,9 +27,13 @@ const sortItems = [
     label: 'Mileage - Descending',
     value: 'dsc'
   }
-];
+]);
 
 function Header(props: Props): JSX.Element {
+  const selectedItem =
+    sortItems.find((item): boolean => item.value === props.selectedSort) ||
+    sortItems[0];
+
   return (
     <TableHeader>
       <RightHeader>
@@ -40,7 +45,7 @@ function Header(props: Props): JSX.Element {
           items={sortItems}
           title="Sort by"
           selectItem={props.setSort}
-          selectedItem={props.selectedSort}
+          dropdownLabel={selectedItem.label}
         />
       </LeftHeader>
     </TableHeader>

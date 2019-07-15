@@ -11,6 +11,7 @@ export interface ApiType {
     manufacturer: string,
     color: string
   ) => Promise<ApiResponse<CarType[]>>;
+  getColors: () => Promise<ApiResponse<string[]>>;
 }
 const create = (baseURL: string = ''): ApiType => {
   const api = apisauce.create({
@@ -34,8 +35,12 @@ const create = (baseURL: string = ''): ApiType => {
       `/api/cars?page=${page}&sort=${sort}&manufacturer=${manufacturer}&color=${color}`
     );
 
+  const getColors = (): Promise<ApiResponse<string[]>> =>
+    api.get('/api/colors');
+
   return {
-    getCars
+    getCars,
+    getColors
   };
 };
 

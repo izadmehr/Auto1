@@ -9,7 +9,7 @@ export const HeaderContainer = styled.nav`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(10px + 2vmin);
+  font-size: 18px;
   color: white;
   border-bottom: 1px solid ${colors.lightGray};
 `;

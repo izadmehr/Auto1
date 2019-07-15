@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { colors } from '../../../utils/theme';
 
 export const DropdownTitle = styled.p`
-font-size: 12px;
-`
+  font-size: 12px;
+`;
 export const MenuContainer = styled.div`
   position: relative;
   width: 300px;
@@ -28,6 +28,7 @@ export const DropDownItems = styled.div`
   width: 100%;
   margin-top: 0.57rem;
   border: 1px solid ${colors.lightGray};
+  z-index: 1;
   :last-child {
     border-bottom: none;
   }
@@ -43,5 +44,9 @@ export const DropdownItem = styled.button`
   :hover {
     background-color: ${colors.mainDark};
     color: ${colors.white};
+  }
+
+  :focus {
+    outline: none;
   }
 `;

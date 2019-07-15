@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const CarsTableContainer = styled.nav`
-  width: 66.6%;
+export const CarsTableContainer = styled.div`
+  width: 800px;
 `;
