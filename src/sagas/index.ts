@@ -6,5 +6,11 @@ import { CarsActionsTypes } from '../stores/cars';
 
 const api = API.create();
 export function* watcherSaga() {
-  yield all([takeLatest(CarsActionsTypes.GET_CARS_REQUEST, getCars, api)]);
+  yield all([
+    takeLatest(
+      [CarsActionsTypes.GET_CARS_REQUEST, CarsActionsTypes.SET_SORT],
+      getCars,
+      api
+    )
+  ]);
 }

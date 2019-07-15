@@ -4,9 +4,10 @@ import Immutable from 'seamless-immutable';
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  getCarsRequest: ['page', 'pageSize'],
+  getCarsRequest: ['page'],
   getCarsSuccess: ['data', 'page', 'totalPageCount', 'totalCarsCount'],
-  getCarsFailure: ['error']
+  getCarsFailure: ['error'],
+  setSort: ['sort']
 });
 
 export const CarsActionsTypes = Types;
@@ -35,6 +36,7 @@ interface State {
   page: number;
   totalPageCount: number;
   totalCarsCount: number;
+  sort: string;
 }
 
 export type CarsState = Immutable.Immutable<State>;
@@ -47,7 +49,8 @@ export const INITIAL_STATE = Immutable<State>({
   error: '',
   page: 0,
   totalPageCount: 0,
-  totalCarsCount: 0
+  totalCarsCount: 0,
+  sort: 'none'
 });
 
 /* ------------- Selectors ------------- */
@@ -55,7 +58,8 @@ export const INITIAL_STATE = Immutable<State>({
 export const CarsSelectors = {
   getData: ({ cars }: { cars: CarsState }): CarsType => cars.data,
   getTotalCarsCount: ({ cars }: { cars: CarsState }): number =>
-    cars.totalCarsCount
+    cars.totalCarsCount,
+  getSort: ({ cars }: { cars: CarsState }): string => cars.sort
 };
 
 /* ------------- Reducers ------------- */
@@ -94,6 +98,9 @@ const failureGtCars = (
   { error }: { error: string }
 ): CarsState => state.merge({ getLoadingStatus: false, error });
 
+const setSort = (state: CarsState, { sort }: { sort: string }): CarsState =>
+  state.set('sort', sort);
+
 export const carsReducer = createReducer<
   CarsState,
   {
@@ -103,9 +110,11 @@ export const carsReducer = createReducer<
     totalPageCount: number;
     totalCarsCount: number;
     error: string;
+    sort: string;
   }
 >(INITIAL_STATE, {
   [Types.GET_CARS_REQUEST]: requestGetCars,
   [Types.GET_CARS_SUCCESS]: successGetCars,
-  [Types.GET_CARS_FAILURE]: failureGtCars
+  [Types.GET_CARS_FAILURE]: failureGtCars,
+  [Types.SET_SORT]: setSort
 });

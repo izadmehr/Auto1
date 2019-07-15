@@ -1,7 +1,7 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { SagaIterator } from '@redux-saga/core';
 
-import CarActions from '../stores/cars';
+import CarActions, { CarsSelectors } from '../stores/cars';
 import { ApiType } from '../services/api';
 
 export function* getCars(
@@ -12,11 +12,18 @@ export function* getCars(
     manufacturer: string;
     color: string;
     page: number;
-    pageSize: number;
   }
 ): SagaIterator {
-  // @ts-ignore
-  const response = yield call(api.getCars, action.page, action.pageSize);
+  const sort = yield select(CarsSelectors.getSort);
+
+  const response = yield call(
+    // @ts-ignore
+    api.getCars,
+    action.page,
+    sort,
+    action.manufacturer,
+    action.color
+  );
 
   if (response.ok) {
     yield put(

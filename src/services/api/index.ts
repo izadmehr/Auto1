@@ -2,15 +2,15 @@
 import apisauce, { ApiResponse } from 'apisauce';
 
 import { CarType } from '../../stores/cars';
-import { createServer, teardownServer } from '../../../server/index';
+import { createServer, teardownServer } from '../../../server';
 
 export interface ApiType {
-  getCars: (params: {
-    page: number;
-    sort: string;
-    manufacturer: string;
-    color: string;
-  }) => Promise<ApiResponse<CarType[]>>;
+  getCars: (
+    page: number,
+    sort: string,
+    manufacturer: string,
+    color: string
+  ) => Promise<ApiResponse<CarType[]>>;
 }
 const create = (baseURL: string = ''): ApiType => {
   const api = apisauce.create({
@@ -24,12 +24,12 @@ const create = (baseURL: string = ''): ApiType => {
   api.addRequestTransform((): void => createServer());
   api.addResponseTransform((): void => teardownServer());
 
-  const getCars = ({
+  const getCars = (
     page = 1,
     sort = 'desc',
     manufacturer = '',
     color = ''
-  }): Promise<ApiResponse<CarType[]>> =>
+  ): Promise<ApiResponse<CarType[]>> =>
     api.get(
       `/api/cars?page=${page}&sort=${sort}&manufacturer=${manufacturer}&color=${color}`
     );

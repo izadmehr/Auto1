@@ -19,6 +19,7 @@ interface Props {
   items: Item[];
   title: string;
   selectItem: (selected: string) => void;
+  selectedItem: string;
 }
 interface States {
   showMenu: boolean;
@@ -53,12 +54,15 @@ export class Dropdown extends Component<Props, States> {
   render(): JSX.Element {
     const { showMenu } = this.state;
     const { items, title } = this.props;
+    const selectedItem =
+      items.find((item): boolean => item.value === this.props.selectedItem) ||
+      items[0];
 
     return (
       <MenuContainer>
         <DropdownTitle>{title}</DropdownTitle>
         <DropdownToggle type="button" onClick={this.showMenu}>
-          Show menu
+          {selectedItem.label}
           {showMenu ? (
             <CaretUp fill={colors.lightGray} size={12} />
           ) : (
@@ -71,6 +75,7 @@ export class Dropdown extends Component<Props, States> {
             {items.map(
               (item: Item): JSX.Element => (
                 <DropdownItem
+                  key={item.value}
                   type="button"
                   onClick={(): void => this.props.selectItem(item.value)}
                 >
