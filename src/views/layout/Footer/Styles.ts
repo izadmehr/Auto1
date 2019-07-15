@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { colors } from '../../../utils/theme';
 
-export const FooterContainer = styled.nav`
+export const FooterContainer = styled.footer`
   height: 80px;
   display: flex;
   align-items: center;
