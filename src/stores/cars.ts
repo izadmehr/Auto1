@@ -5,7 +5,7 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   getCarsRequest: ['page', 'pageSize'],
-  getCarsSuccess: ['data', 'page', 'dataTotalSize'],
+  getCarsSuccess: ['data', 'page', 'totalPageCount', 'totalCarsCount'],
   getCarsFailure: ['error']
 });
 
@@ -53,7 +53,9 @@ export const INITIAL_STATE = Immutable<State>({
 /* ------------- Selectors ------------- */
 
 export const CarsSelectors = {
-  getData: ({ cars }: { cars: CarsState }): CarsType => cars.data
+  getData: ({ cars }: { cars: CarsState }): CarsType => cars.data,
+  getTotalCarsCount: ({ cars }: { cars: CarsState }): number =>
+    cars.totalCarsCount
 };
 
 /* ------------- Reducers ------------- */
@@ -76,8 +78,8 @@ const successGetCars = (
     totalCarsCount: number;
     totalPageCount: number;
   }
-): CarsState => {
-  return state.merge({
+): CarsState =>
+  state.merge({
     getLoadingStatus: false,
     error: '',
     data,
@@ -85,7 +87,6 @@ const successGetCars = (
     totalPageCount,
     totalCarsCount
   });
-};
 
 // Something went wrong somewhere.
 const failureGtCars = (
