@@ -1,21 +1,22 @@
 export interface ICar {
-    stockNumber: number,
-    manufacturerName: string,
-    modelName: string,
-    color: string,
-    mileage: {
-        number: number,
-        unit: string
-    },
-    fuelType: string,
-    pictureUrl: string
+  stockNumber: number;
+  manufacturerName: string;
+  modelName: string;
+  color: string;
+  mileage: {
+    number: number;
+    unit: string;
+  };
+  fuelType: string;
+  pictureUrl: string;
+  uuid: string;
 }
 
 export interface IManufacturer {
+  name: string;
+  models: {
     name: string;
-    models: Array<{
-        name: string;
-        uuid: string
-    }>;
     uuid: string;
+  }[];
+  uuid: string;
 }

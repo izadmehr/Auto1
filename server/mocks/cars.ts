@@ -1,12 +1,14 @@
 import * as faker from 'faker';
+import nanoid from 'nanoid';
+
 import { colors } from './colors';
 import { manufacturers } from './manufacturers';
-import { ICar } from '../types';
-import { IManufacturer } from '../types';
+import { ICar, IManufacturer } from '../types';
+import { images } from './images';
 
-export const cars: Array<ICar> = [];
+export const cars: ICar[] = [];
 
-for (var i = 0; i < 1000; i++) {
+for (let i = 0; i < 1000; i++) {
   const stockNumber = i;
   const manufacturer: IManufacturer = faker.random.arrayElement(manufacturers);
   const model = faker.random.arrayElement(manufacturer.models);
@@ -15,6 +17,7 @@ for (var i = 0; i < 1000; i++) {
   const fuelType = faker.random.arrayElement(['Petrol', 'Diesel']);
 
   cars.push({
+    uuid: nanoid(),
     stockNumber,
     manufacturerName: manufacturer.name,
     modelName: model.name,
@@ -24,6 +27,6 @@ for (var i = 0; i < 1000; i++) {
       unit: 'km'
     },
     fuelType,
-    pictureUrl: '/images/car.svg'
+    pictureUrl: faker.random.arrayElement(images)
   });
 }
