@@ -4,7 +4,7 @@ import { HeaderContainer, Logo, HeaderLink, HeaderRight } from './Styles';
 
 const Auto1Logo = require('../../../assets/images/logo-auto1.png');
 
-function Header(): JSX.Element {
+export function Header(): JSX.Element {
   return (
     <HeaderContainer>
       <Logo src={Auto1Logo} alt="Auto1 logo" />
@@ -22,5 +22,3 @@ function Header(): JSX.Element {
     </HeaderContainer>
   );
 }
-
-export default Header;

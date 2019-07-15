@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 import { Cars } from './views/cars';
 import { NoMatch } from './views/404';
-import Header from './views/layout/Header';
+import { Header } from './views/layout/Header';
+import { Footer } from './views/layout/Footer';
 
 const Body = styled.main`
   font-family: 'Roboto', sans-serif;
@@ -21,6 +22,7 @@ function AppRouter(): JSX.Element {
           <Route path="/" exact component={Cars} />
           <Route component={NoMatch} />
         </Switch>
+        <Footer />
       </Body>
     </Router>
   );

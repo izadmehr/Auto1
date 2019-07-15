@@ -3,7 +3,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Header from './index';
+import { Header } from './index';
 
 describe('<Header />', (): void => {
   it('should render <Logo />', () => {
@@ -16,7 +16,7 @@ describe('<Header />', (): void => {
     expect(getByAltText('Auto1 logo')).toBeDefined();
   });
 
-  it('should render Links', () => {
+  it('should render Links', (): void => {
     const { getByText } = render(
       <Router>
         <Header />
