@@ -16,10 +16,6 @@ interface Props {
 
 const sortItems = Immutable([
   {
-    label: 'None',
-    value: ''
-  },
-  {
     label: 'Mileage - Ascending',
     value: 'asc'
   },
@@ -30,10 +26,6 @@ const sortItems = Immutable([
 ]);
 
 function Header(props: Props): JSX.Element {
-  const selectedItem =
-    sortItems.find((item): boolean => item.value === props.selectedSort) ||
-    sortItems[0];
-
   return (
     <TableHeader>
       <RightHeader>
@@ -45,7 +37,8 @@ function Header(props: Props): JSX.Element {
           items={sortItems}
           title="Sort by"
           selectItem={props.setSort}
-          dropdownLabel={selectedItem.label}
+          selectedItem={props.selectedSort}
+          defaultItem="None"
         />
       </LeftHeader>
     </TableHeader>

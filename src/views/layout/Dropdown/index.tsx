@@ -20,10 +20,16 @@ interface Props {
   items: Immutable.Immutable<Item[]>;
   title: string;
   selectItem: (selected: string) => void;
-  dropdownLabel: string;
+  selectedItem: string;
+  defaultItem: string;
 }
 interface States {
   showMenu: boolean;
+}
+
+interface Item {
+  label: string;
+  value: string;
 }
 
 export class Dropdown extends Component<Props, States> {
@@ -52,15 +58,25 @@ export class Dropdown extends Component<Props, States> {
   onSelect = (selectedItem: string): void =>
     this.props.selectItem(selectedItem);
 
+  renderRow = (item: Item): JSX.Element => (
+    <DropdownItem
+      key={item.label}
+      type="button"
+      onClick={(): void => this.props.selectItem(item.value)}
+    >
+      {item.label}
+    </DropdownItem>
+  );
+
   render(): JSX.Element {
     const { showMenu } = this.state;
-    const { items, title, dropdownLabel } = this.props;
+    const { items, title, selectedItem, defaultItem } = this.props;
 
     return (
       <MenuContainer>
         <DropdownTitle>{title}</DropdownTitle>
         <DropdownToggle type="button" onClick={this.showMenu}>
-          {dropdownLabel}
+          {selectedItem || defaultItem}
           {showMenu ? (
             <CaretUp fill={colors.lightGray} size={12} />
           ) : (
@@ -68,21 +84,12 @@ export class Dropdown extends Component<Props, States> {
           )}
         </DropdownToggle>
 
-        {showMenu ? (
+        {showMenu && (
           <DropDownItems className="menu">
-            {items.map(
-              (item: Item): JSX.Element => (
-                <DropdownItem
-                  key={item.value}
-                  type="button"
-                  onClick={(): void => this.props.selectItem(item.value)}
-                >
-                  {item.label}
-                </DropdownItem>
-              )
-            )}
+            {this.renderRow({ label: defaultItem, value: '' })}
+            {items.map((item: Item): JSX.Element => this.renderRow(item))}
           </DropDownItems>
-        ) : null}
+        )}
       </MenuContainer>
     );
   }

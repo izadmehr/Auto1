@@ -41,13 +41,15 @@ export class NavFilter extends Component<Props> {
           items={this.props.colors}
           title="Color"
           selectItem={this.props.selectColor}
-          dropdownLabel={this.props.selectedColor || 'All car colors'}
+          selectedItem={this.props.selectedColor}
+          defaultItem="All car colors"
         />
         <Dropdown
           items={this.props.manufacturers}
           title="Manufacture"
           selectItem={this.props.selectManufacturer}
-          dropdownLabel={this.props.selectedManufacturer || 'All Manufacturers'}
+          selectedItem={this.props.selectedManufacturer}
+          defaultItem="All Manufacturers"
         />
         <FilterButton type="button" onClick={this.filter}>
           Filter

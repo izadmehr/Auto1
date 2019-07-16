@@ -27,7 +27,7 @@ const create = (baseURL: string = ''): ApiType => {
   api.addResponseTransform((): void => teardownServer());
 
   const getCars = (
-    page = 0,
+    page = 1,
     sort = '',
     manufacturer = '',
     color = ''
