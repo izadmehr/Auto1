@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable';
 
 import carsActions, { CarsSelectors } from '../../../stores/cars';
 import { RootState } from '../../../stores';
-import { H3, LeftHeader, RightHeader, TableHeader } from './Styles';
+import { H3, TableHeader } from './Styles';
 import { Dropdown } from '../../../views/layout/Dropdown';
 
 interface Props {
@@ -28,11 +28,11 @@ const sortItems = Immutable([
 function Header(props: Props): JSX.Element {
   return (
     <TableHeader>
-      <RightHeader>
+      <div>
         <H3>Available cars</H3>
         <p> {`Showing ${props.carsAmount} of ${props.totalCarsCount}`} </p>
-      </RightHeader>
-      <LeftHeader>
+      </div>
+      <div>
         <Dropdown
           items={sortItems}
           title="Sort by"
@@ -40,7 +40,7 @@ function Header(props: Props): JSX.Element {
           selectedItem={props.selectedSort}
           defaultItem="None"
         />
-      </LeftHeader>
+      </div>
     </TableHeader>
   );
 }
