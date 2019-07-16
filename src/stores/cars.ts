@@ -60,6 +60,8 @@ export const CarsSelectors = {
   getData: ({ cars }: { cars: CarsState }): CarsType => cars.data,
   getTotalCarsCount: ({ cars }: { cars: CarsState }): number =>
     cars.totalCarsCount,
+  getTotalPageCount: ({ cars }: { cars: CarsState }): number =>
+    cars.totalPageCount,
   getSort: ({ cars }: { cars: CarsState }): string => cars.sort,
   getPage: ({ cars }: { cars: CarsState }): number => cars.page
 };

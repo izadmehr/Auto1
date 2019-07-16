@@ -12,11 +12,19 @@ const api = API.create();
 export function* watcherSaga() {
   yield all([
     takeLatest(
-      [CarsActionsTypes.GET_CARS_REQUEST, CarsActionsTypes.SET_SORT],
+      [
+        CarsActionsTypes.GET_CARS_REQUEST,
+        CarsActionsTypes.SET_SORT,
+        CarsActionsTypes.SET_PAGE
+      ],
       getCars,
       api
     ),
     takeLatest(ColorsActionsTypes.GET_COLORS_REQUEST, getColors, api),
-    takeLatest(ManufacturersActionsTypes.GET_MANUFACTURERS_REQUEST, getManufacturers, api),
+    takeLatest(
+      ManufacturersActionsTypes.GET_MANUFACTURERS_REQUEST,
+      getManufacturers,
+      api
+    )
   ]);
 }

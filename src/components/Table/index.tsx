@@ -10,6 +10,7 @@ import { RootState } from '../../stores';
 import Row from './Row';
 import { CarsTableContainer } from './Styles';
 import { TableHeaderContainer } from './TableHeader';
+import { TablePaginationContainer } from '../Pagination';
 
 interface Props {
   cars: CarsType;
@@ -30,6 +31,7 @@ class Table extends Component<Props> {
             <Row key={car.uuid} car={car} />
           )
         )}
+        <TablePaginationContainer />
       </CarsTableContainer>
     );
   }
