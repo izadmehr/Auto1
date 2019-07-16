@@ -13,18 +13,12 @@ import { TableHeaderContainer } from './TableHeader';
 
 interface Props {
   cars: CarsType;
-  getCars: (
-    sort: string,
-    manufacturer: string,
-    color: string,
-    page: number,
-    pageSize: number
-  ) => void;
+  getCars: () => void;
 }
 
 class Table extends Component<Props> {
   componentDidMount(): void {
-    this.props.getCars('', 'audi', 'red', 1, 1);
+    this.props.getCars();
   }
 
   render(): JSX.Element {

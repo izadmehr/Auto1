@@ -6,32 +6,21 @@ import { ApiType } from '../services/api';
 import { ColorsSelectors } from '../stores/colors';
 import { ManufacturersSelectors } from '../stores/manufacturers';
 
-export function* getCars(
-  api: ApiType,
-  action: {
-    type: string;
-    page: number;
-  }
-): SagaIterator {
+export function* getCars(api: ApiType): SagaIterator {
+  const page = yield select(CarsSelectors.getPage);
   const sort = yield select(CarsSelectors.getSort);
   const color = yield select(ColorsSelectors.getSelectedColor);
   const manufacturer = yield select(
     ManufacturersSelectors.getSelectedManufacturer
   );
 
-  const response = yield call(
-    api.getCars,
-    action.page,
-    sort,
-    manufacturer,
-    color
-  );
+  const response = yield call(api.getCars, page, sort, manufacturer, color);
+
 
   if (response.ok) {
     yield put(
       CarActions.getCarsSuccess(
         response.data.cars,
-        action.page,
         response.data.totalPageCount,
         response.data.totalCarsCount
       )

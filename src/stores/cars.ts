@@ -5,9 +5,10 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   getCarsRequest: ['page'],
-  getCarsSuccess: ['data', 'page', 'totalPageCount', 'totalCarsCount'],
+  getCarsSuccess: ['data', 'totalPageCount', 'totalCarsCount'],
   getCarsFailure: ['error'],
-  setSort: ['sort']
+  setSort: ['sort'],
+  setPage: ['page']
 });
 
 export const CarsActionsTypes = Types;
@@ -47,7 +48,7 @@ export const INITIAL_STATE = Immutable<State>({
   data: [],
   getLoadingStatus: false,
   error: '',
-  page: 0,
+  page: 1,
   totalPageCount: 0,
   totalCarsCount: 0,
   sort: 'none'
@@ -59,7 +60,8 @@ export const CarsSelectors = {
   getData: ({ cars }: { cars: CarsState }): CarsType => cars.data,
   getTotalCarsCount: ({ cars }: { cars: CarsState }): number =>
     cars.totalCarsCount,
-  getSort: ({ cars }: { cars: CarsState }): string => cars.sort
+  getSort: ({ cars }: { cars: CarsState }): string => cars.sort,
+  getPage: ({ cars }: { cars: CarsState }): number => cars.page
 };
 
 /* ------------- Reducers ------------- */
@@ -73,12 +75,10 @@ const successGetCars = (
   state: CarsState,
   {
     data,
-    page,
     totalCarsCount,
     totalPageCount
   }: {
     data: CarType[];
-    page: number;
     totalCarsCount: number;
     totalPageCount: number;
   }
@@ -87,7 +87,6 @@ const successGetCars = (
     getLoadingStatus: false,
     error: '',
     data,
-    page,
     totalPageCount,
     totalCarsCount
   });
@@ -100,6 +99,9 @@ const failureGtCars = (
 
 const setSort = (state: CarsState, { sort }: { sort: string }): CarsState =>
   state.set('sort', sort);
+
+const setPage = (state: CarsState, { page }: { page: number }): CarsState =>
+  state.set('page', page);
 
 export const carsReducer = createReducer<
   CarsState,
@@ -116,5 +118,6 @@ export const carsReducer = createReducer<
   [Types.GET_CARS_REQUEST]: requestGetCars,
   [Types.GET_CARS_SUCCESS]: successGetCars,
   [Types.GET_CARS_FAILURE]: failureGtCars,
-  [Types.SET_SORT]: setSort
+  [Types.SET_SORT]: setSort,
+  [Types.SET_PAGE]: setPage
 });
