@@ -12,6 +12,7 @@ export interface ApiType {
     color: string
   ) => Promise<ApiResponse<CarType[]>>;
   getColors: () => Promise<ApiResponse<string[]>>;
+  getManufacturers: () => Promise<ApiResponse<string[]>>;
 }
 const create = (baseURL: string = ''): ApiType => {
   const api = apisauce.create({
@@ -26,8 +27,8 @@ const create = (baseURL: string = ''): ApiType => {
   api.addResponseTransform((): void => teardownServer());
 
   const getCars = (
-    page = 1,
-    sort = 'desc',
+    page = 0,
+    sort = '',
     manufacturer = '',
     color = ''
   ): Promise<ApiResponse<CarType[]>> =>
@@ -37,10 +38,13 @@ const create = (baseURL: string = ''): ApiType => {
 
   const getColors = (): Promise<ApiResponse<string[]>> =>
     api.get('/api/colors');
+  const getManufacturers = (): Promise<ApiResponse<string[]>> =>
+    api.get('/api/manufacturers');
 
   return {
     getCars,
-    getColors
+    getColors,
+    getManufacturers
   };
 };
 

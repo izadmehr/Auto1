@@ -3,26 +3,28 @@ import { SagaIterator } from '@redux-saga/core';
 
 import CarActions, { CarsSelectors } from '../stores/cars';
 import { ApiType } from '../services/api';
+import { ColorsSelectors } from '../stores/colors';
+import { ManufacturersSelectors } from '../stores/manufacturers';
 
 export function* getCars(
   api: ApiType,
   action: {
     type: string;
-    sort: string;
-    manufacturer: string;
-    color: string;
     page: number;
   }
 ): SagaIterator {
   const sort = yield select(CarsSelectors.getSort);
+  const color = yield select(ColorsSelectors.getSelectedColor);
+  const manufacturer = yield select(
+    ManufacturersSelectors.getSelectedManufacturer
+  );
 
   const response = yield call(
-    // @ts-ignore
     api.getCars,
     action.page,
     sort,
-    action.manufacturer,
-    action.color
+    manufacturer,
+    color
   );
 
   if (response.ok) {

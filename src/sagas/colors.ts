@@ -7,10 +7,11 @@ import { ApiType } from '../services/api';
 export function* getColors(api: ApiType): SagaIterator {
   const response = yield call(api.getColors);
 
-  console.log('response.data: ', response.data);
-
   if (response.ok) {
-    const colors = response.data.colors.map((color: string) => ({
+    const colors = response.data.colors.map((color: string): {
+      label: string;
+      value: string;
+    } => ({
       label: color,
       value: color
     }));
