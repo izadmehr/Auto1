@@ -17,5 +17,8 @@ module.exports = {
     DEVELOPMENT: false,
     FAKE_SERVER: false
   },
-  setupFilesAfterEnv: ['@testing-library/react/cleanup-after-each']
+  setupFilesAfterEnv: [
+    '@testing-library/react/cleanup-after-each',
+    '@testing-library/jest-dom/extend-expect'
+  ]
 };

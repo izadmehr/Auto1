@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 
 import carsActions, { CarsSelectors } from '../../stores/cars';
 import { RootState } from '../../stores';
-import { PaginationButton, PaginationText, Pagination } from './Styles';
+import {
+  PaginationButton,
+  PaginationText,
+  PaginationContainer
+} from './Styles';
 
 interface Props {
   page: number;
@@ -11,13 +15,13 @@ interface Props {
   setPage: (page: number) => void;
 }
 
-function TablePagination({
+export function Pagination({
   page,
   totalPageCount,
   setPage
 }: Props): JSX.Element {
   return (
-    <Pagination>
+    <PaginationContainer>
       <PaginationButton disabled={page === 1} onClick={(): void => setPage(1)}>
         First
       </PaginationButton>
@@ -41,7 +45,7 @@ function TablePagination({
       >
         Last
       </PaginationButton>
-    </Pagination>
+    </PaginationContainer>
   );
 }
 
@@ -59,4 +63,4 @@ const dispatchProps = {
 export const TablePaginationContainer = connect(
   mapStateToProps,
   dispatchProps
-)(TablePagination);
+)(Pagination);

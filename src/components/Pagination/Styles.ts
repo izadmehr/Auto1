@@ -2,7 +2,7 @@ import styled, { css, CSSProp, DefaultTheme } from 'styled-components';
 
 import { colors } from '../../utils/theme';
 
-export const Pagination = styled.nav`
+export const PaginationContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
