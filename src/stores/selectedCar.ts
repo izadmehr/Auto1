@@ -19,7 +19,7 @@ export interface CarType {
   color: string;
   mileage: {
     number: number;
-    unit: number;
+    unit: string;
   };
   fuelType: string;
   pictureUrl: string;
@@ -32,7 +32,7 @@ const initialCar = {
   color: '',
   mileage: {
     number: 0,
-    unit: 0
+    unit: ''
   },
   fuelType: '',
   pictureUrl: ''
