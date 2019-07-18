@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable';
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  getCarsRequest: ['page'],
+  getCarsRequest: [],
   getCarsSuccess: ['data', 'totalPageCount', 'totalCarsCount'],
   getCarsFailure: ['error'],
   setSort: ['sort'],
@@ -25,7 +25,6 @@ export interface CarType {
   };
   fuelType: string;
   pictureUrl: string;
-  uuid: string;
 }
 
 export type CarsType = Immutable.Immutable<CarType[]>;

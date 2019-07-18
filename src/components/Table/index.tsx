@@ -28,7 +28,7 @@ class Table extends Component<Props> {
         <TableHeaderContainer />
         {this.props.cars.map(
           (car: CarType): JSX.Element => (
-            <Row key={car.uuid} car={car} />
+            <Row key={car.stockNumber} car={car} />
           )
         )}
         <TablePaginationContainer />
