@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { Cars } from './views/cars';
@@ -31,18 +31,16 @@ function AppRouter(): JSX.Element {
   return (
     <>
       <GlobalStyle />
-      <Router>
-        <Body>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={Cars} />
-            <Route path="/car/:id" exact component={Show} />
-            <Route component={NoMatch} />
-          </Switch>
-          <PushFooter />
-        </Body>
-        <Footer />
-      </Router>
+      <Body>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Cars} />
+          <Route path="/car/:id" exact component={Show} />
+          <Route component={NoMatch} />
+        </Switch>
+        <PushFooter />
+      </Body>
+      <Footer />
     </>
   );
 }
