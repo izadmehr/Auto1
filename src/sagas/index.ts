@@ -7,6 +7,8 @@ import { getManufacturers } from './manufacturers';
 import { CarsActionsTypes } from '../stores/cars';
 import { ColorsActionsTypes } from '../stores/colors';
 import { ManufacturersActionsTypes } from '../stores/manufacturers';
+import { SelectedCarActionsTypes } from '../stores/selectedCar';
+import { getSelectedCar } from './selectedCar';
 
 const api = API.create();
 export function* watcherSaga() {
@@ -25,6 +27,7 @@ export function* watcherSaga() {
       ManufacturersActionsTypes.GET_MANUFACTURERS_REQUEST,
       getManufacturers,
       api
-    )
+    ),
+    takeLatest(SelectedCarActionsTypes.GET_SELECTED_CAR_REQUEST, getSelectedCar, api)
   ]);
 }

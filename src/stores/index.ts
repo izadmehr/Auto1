@@ -5,11 +5,13 @@ import { History } from 'history';
 import { carsReducer, CarsState } from './cars';
 import { colorsReducer, ColorsState } from './colors';
 import { manufacturersReducer, ManufacturersState } from './manufacturers';
+import { selectedCarReducer, SelectedCarState } from './selectedCar';
 
 export interface RootState {
   cars: CarsState;
   colors: ColorsState;
   manufacturers: ManufacturersState;
+  selectedCar: SelectedCarState;
 }
 
 const rootReducer = (history: History): Reducer =>
@@ -17,7 +19,8 @@ const rootReducer = (history: History): Reducer =>
     router: connectRouter(history),
     cars: carsReducer,
     colors: colorsReducer,
-    manufacturers: manufacturersReducer
+    manufacturers: manufacturersReducer,
+    selectedCar: selectedCarReducer
   });
 
 export default rootReducer;
