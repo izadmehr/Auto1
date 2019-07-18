@@ -1,5 +1,4 @@
 import * as faker from 'faker';
-import nanoid from 'nanoid';
 
 import { colors } from './colors';
 import { manufacturers } from './manufacturers';
@@ -17,7 +16,6 @@ for (let i = 0; i < 1000; i++) {
   const fuelType = faker.random.arrayElement(['Petrol', 'Diesel']);
 
   cars.push({
-    uuid: nanoid(),
     stockNumber,
     manufacturerName: manufacturer.name,
     modelName: model.name,

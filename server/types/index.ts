@@ -9,7 +9,6 @@ export interface ICar {
   };
   fuelType: string;
   pictureUrl: string;
-  uuid: string;
 }
 
 export interface IManufacturer {
