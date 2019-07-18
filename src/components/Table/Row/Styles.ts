@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { colors } from '../../../utils/theme';
 
@@ -42,7 +43,7 @@ export const CarDetails = styled.p`
   color: ${colors.darkGray};
   font-size: 12px;
 `;
-export const ViewDetails = styled.a`
+export const ViewDetails = styled(Link)`
   color: ${colors.main};
   font-size: 12px;
   text-decoration: none;
