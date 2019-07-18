@@ -11,7 +11,7 @@ export function* getSelectedCar(
 ): SagaIterator {
   const response = yield call(api.getCar, id);
 
-  if (response.ok) {
+  if (response.ok && response.data.car) {
     yield put(CarActions.getSelectedCarSuccess(response.data.car));
   } else {
     yield put(CarActions.getSelectedCarFailure(response.originalError));
