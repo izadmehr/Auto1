@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { FilterButton, NavFiltersContainer } from './Styles';
+import { NavFiltersContainer } from './Styles';
 import { Dropdown } from '../Dropdown';
 import { RootState } from '../../../stores';
 import colorsActions, {
@@ -13,6 +13,7 @@ import manufacturersActions, {
   ManufacturersType
 } from '../../../stores/manufacturers';
 import carsActions from '../../../stores/cars';
+import { Button } from '../../../components/Button';
 
 interface Props {
   colors: ColorsType;
@@ -51,9 +52,9 @@ export class NavFilter extends Component<Props> {
           selectedItem={this.props.selectedManufacturer}
           defaultItem="All Manufacturers"
         />
-        <FilterButton type="button" onClick={this.filter}>
+        <Button type="button" onClick={this.filter}>
           Filter
-        </FilterButton>
+        </Button>
       </NavFiltersContainer>
     );
   }
