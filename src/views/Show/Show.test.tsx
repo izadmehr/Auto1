@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import * as React from 'react';
 import Immutable from 'seamless-immutable';
 
-import { CarType } from '../../stores/selectedCar';
+import { CarType } from '../../stores/cars';
 
 import { ShowComponent } from './index';
 

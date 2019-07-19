@@ -21,7 +21,7 @@ export interface CarType {
   color: string;
   mileage: {
     number: number;
-    unit: number;
+    unit: string;
   };
   fuelType: string;
   pictureUrl: string;

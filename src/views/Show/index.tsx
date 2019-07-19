@@ -13,11 +13,11 @@ import {
 } from './Styles';
 import selectedCarActions, {
   SelectedCarType,
-  CarType,
   SelectedCarSelectors
 } from '../../stores/selectedCar';
 import { RootState } from '../../stores';
 import FavouriteBox from './FavouriteBox';
+import { CarType } from '../../stores/cars';
 
 interface States {
   car: CarType;

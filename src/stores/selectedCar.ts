@@ -1,6 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
+import { CarType } from './cars';
+
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
@@ -11,19 +13,6 @@ const { Types, Creators } = createActions({
 
 export const SelectedCarActionsTypes = Types;
 export default Creators;
-
-export interface CarType {
-  stockNumber: number;
-  manufacturerName: string;
-  modelName: string;
-  color: string;
-  mileage: {
-    number: number;
-    unit: string;
-  };
-  fuelType: string;
-  pictureUrl: string;
-}
 
 const initialCar = {
   stockNumber: 0,
