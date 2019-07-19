@@ -14,17 +14,13 @@ const persistConfig = {
   key: 'root',
   storage,
   blacklist: ['router'],
-  whitelist: ['selectedCar'],
+  whitelist: ['favourites'],
   stateReconciler: seamlessImmutableReconciler
 };
 
 export const sagaMiddleware = createSagaMiddleware();
 
 export const history = createBrowserHistory();
-
-history.listen((location, action) => {
-  console.log(action, location);
-});
 
 const rootReducer = createRootReducer(history); // root reducer with router state
 const persistedReducer = persistReducer(persistConfig, rootReducer);

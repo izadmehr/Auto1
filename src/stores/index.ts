@@ -6,6 +6,7 @@ import { carsReducer, CarsState } from './cars';
 import { colorsReducer, ColorsState } from './colors';
 import { manufacturersReducer, ManufacturersState } from './manufacturers';
 import { selectedCarReducer, SelectedCarState } from './selectedCar';
+import { favouritesReducer } from './favourites';
 
 export interface RootState {
   cars: CarsState;
@@ -20,7 +21,8 @@ const rootReducer = (history: History): Reducer =>
     cars: carsReducer,
     colors: colorsReducer,
     manufacturers: manufacturersReducer,
-    selectedCar: selectedCarReducer
+    selectedCar: selectedCarReducer,
+    favourites: favouritesReducer
   });
 
 export default rootReducer;
