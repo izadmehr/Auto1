@@ -1,9 +1,11 @@
 // ETA: 2 hours
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import * as React from 'react';
 import Immutable from 'seamless-immutable';
+import { Provider } from 'react-redux';
 
 import { CarType } from '../../stores/cars';
+import configureStore from '../../stores/configureStore';
 
 import { ShowComponent } from './index';
 
@@ -19,127 +21,70 @@ const car = Immutable<CarType>({
   fuelType: 'Diesel',
   pictureUrl: 'https://picsum.photos/id/111/200/200'
 });
+const { store } = configureStore();
 
-describe('<Show />', () => {
-  // it('should redeirect to 404 if car is not found', () => {
+function renderWithRedux(): RenderResult {
+  return {
+    ...render(
+      <Provider store={store}>
+        <ShowComponent
+          match={{
+            params: { id: '1' },
+            isExact: true,
+            path: '/cars/1',
+            url: '/cars/1'
+          }}
+          getSelectedCar={(): void => {}}
+          car={car}
+        />
+      </Provider>
+    )
+  };
+}
+
+describe('<Show />', (): void => {
+  // it('should redeirect to 404 if car is not found', (): void => {
   //   expect(false).toBe(true);
   // });
 
-  it('should render car manufacturer name', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render car manufacturer name', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('Volkswagen', { exact: false })).toBeDefined();
   });
 
-  it('should render car model name', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render car model name', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('Eos', { exact: false })).toBeDefined();
   });
 
-  it('should render car stock number', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render car stock number', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('#9', { exact: false })).toBeDefined();
   });
 
-  it('should render car mileage', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render car mileage', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('37175 km', { exact: false })).toBeDefined();
   });
 
-  it('should render car fuel type', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render car fuel type', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('Diesel', { exact: false })).toBeDefined();
   });
 
-  it('should render car color', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render car color', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('green', { exact: false })).toBeDefined();
   });
 
-  it('should render "Save" favorites <Button />', () => {
-    const { getByText } = render(
-      <ShowComponent
-        match={{
-          params: { id: '1' },
-          isExact: true,
-          path: '/cars/1',
-          url: '/cars/1'
-        }}
-        getSelectedCar={(): void => {}}
-        car={car}
-      />
-    );
+  it('should render "Save" favorites <Button />', (): void => {
+    const { getByText } = renderWithRedux();
 
     expect(getByText('Save')).toBeDefined();
   });

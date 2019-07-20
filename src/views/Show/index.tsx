@@ -18,7 +18,6 @@ import selectedCarActions, {
 import { RootState } from '../../stores';
 import { FavouriteBoxContainer } from './FavouriteBox';
 import { CarType } from '../../stores/cars';
-import { Image } from '../../components/Table/Row/Styles';
 
 interface States {
   car: CarType;
