@@ -1,10 +1,11 @@
-import { cars } from '../mocks/cars';
 import { MockRequest, MockResponse } from 'xhr-mock';
+
+import { cars } from '../mocks/cars';
 import { ICar } from '../types';
 
 const ITEMS_PER_PAGE = 10;
 
-function paginate(collection: Array<ICar> = [], page = 1) {
+function paginate(collection: ICar[] = [], page = 1) {
   const start = (page - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
 
@@ -14,7 +15,7 @@ function paginate(collection: Array<ICar> = [], page = 1) {
 function filterByProperty(
   propertyName: 'manufacturerName' | 'color',
   propertyValue: string | null,
-  collection: Array<ICar>
+  collection: ICar[]
 ) {
   if (propertyValue) {
     return collection.filter(function(item) {
@@ -37,12 +38,16 @@ export function getCar(req: MockRequest, res: MockResponse) {
 
   if (car) {
     return res.status(201).body(JSON.stringify({ car }));
-  } else {
-    return res.status(404);
   }
+
+  return res.status(404);
 }
 
-export function getCars(req: MockRequest, res: MockResponse) {
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export async function getCars(req: MockRequest, res: MockResponse) {
   const url = req.url();
   const query = new URLSearchParams(url.query);
 
@@ -72,6 +77,8 @@ export function getCars(req: MockRequest, res: MockResponse) {
       return a.stockNumber - b.stockNumber;
     });
   }
+
+  await sleep(1000);
 
   return res.status(201).body(
     JSON.stringify({
