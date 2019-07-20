@@ -7,7 +7,9 @@ const Auto1Logo = require('../../../assets/images/logo-auto1.png');
 export function Header(): JSX.Element {
   return (
     <HeaderContainer>
-      <Logo src={Auto1Logo} alt="Auto1 logo" />
+      <HeaderLink to="/">
+        <Logo src={Auto1Logo} alt="Auto1 logo" />
+      </HeaderLink>
       <HeaderRight>
         <li>
           <HeaderLink to="/">Cars</HeaderLink>
