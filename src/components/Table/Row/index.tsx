@@ -21,7 +21,9 @@ function Row(props: Props): JSX.Element {
     <RowContainer>
       <Image src={car.pictureUrl} alt={car.modelName} />
       <RowRight>
-        <RowTitle>{`${car.manufacturerName} ${car.modelName}`}</RowTitle>
+        <RowTitle
+          to={`/car/${car.stockNumber}`}
+        >{`${car.manufacturerName} ${car.modelName}`}</RowTitle>
         <CarDetails>
           {`Stock #${car.stockNumber} - ${car.mileage.number} ${car.mileage.unit} ${car.fuelType} ${car.color}`}
         </CarDetails>

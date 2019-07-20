@@ -28,7 +28,7 @@ export const RowRight = styled.div`
   margin-left: 1.5rem;
 `;
 
-export const RowTitle = styled.a`
+export const RowTitle = styled(Link)`
   color: ${colors.darkGray};
   font-size: 18px;
   font-weight: bold;
