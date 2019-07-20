@@ -31,7 +31,7 @@ export type CarsType = Immutable.Immutable<CarType[]>;
 
 interface State {
   data: CarType[];
-  getLoadingStatus: boolean;
+  loadingStatus: boolean;
   error: string;
   page: number;
   totalPageCount: number;
@@ -45,7 +45,7 @@ export type CarsState = Immutable.Immutable<State>;
 
 export const INITIAL_STATE = Immutable<State>({
   data: [],
-  getLoadingStatus: false,
+  loadingStatus: false,
   error: '',
   page: 1,
   totalPageCount: 0,
@@ -62,14 +62,16 @@ export const CarsSelectors = {
   getTotalPageCount: ({ cars }: { cars: CarsState }): number =>
     cars.totalPageCount,
   getSort: ({ cars }: { cars: CarsState }): string => cars.sort,
-  getPage: ({ cars }: { cars: CarsState }): number => cars.page
+  getPage: ({ cars }: { cars: CarsState }): number => cars.page,
+  getLoadingStatus: ({ cars }: { cars: CarsState }): boolean =>
+    cars.loadingStatus
 };
 
 /* ------------- Reducers ------------- */
 
 // request the data from an api
 const requestGetCars = (state: CarsState): CarsState =>
-  state.merge({ getLoadingStatus: true, data: [] });
+  state.merge({ loadingStatus: true, data: [] });
 
 // successful api lookup
 const successGetCars = (
@@ -85,7 +87,7 @@ const successGetCars = (
   }
 ): CarsState =>
   state.merge({
-    getLoadingStatus: false,
+    loadingStatus: false,
     error: '',
     data,
     totalPageCount,
@@ -96,7 +98,7 @@ const successGetCars = (
 const failureGtCars = (
   state: CarsState,
   { error }: { error: string }
-): CarsState => state.merge({ getLoadingStatus: false, error });
+): CarsState => state.merge({ loadingStatus: false, error });
 
 const setSort = (state: CarsState, { sort }: { sort: string }): CarsState =>
   state.set('sort', sort);
