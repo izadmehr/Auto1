@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 
 import { NavFiltersContainer } from './Styles';
 import { Dropdown } from '../Dropdown';
@@ -25,15 +26,41 @@ interface Props {
   getManufacturers: () => void;
   selectManufacturer: (color: string) => void;
   getCars: () => void;
+  push: (url: string) => void;
+}
+interface States {
+  selectedColor: string;
+  selectedManufacturer: string;
 }
 
-export class NavFilter extends Component<Props> {
+export class NavFilter extends Component<Props, States> {
+  state = {
+    selectedColor: '',
+    selectedManufacturer: ''
+  };
+
   componentDidMount(): void {
     this.props.getColors();
     this.props.getManufacturers();
   }
 
-  filter = (): void => this.props.getCars();
+  filter = (): void => {
+    this.props.push(
+      `?color=${this.state.selectedColor}&manufacturer=${this.state.selectedManufacturer}`
+    );
+    this.props.getCars();
+  };
+
+  selectColor = (selectedColor: string): void => {
+    this.props.selectColor(selectedColor);
+    this.setState({ selectedColor });
+  };
+
+  selectManufacturer = (selectedManufacturer: string): void => {
+    this.props.selectManufacturer(selectedManufacturer);
+
+    this.setState({ selectedManufacturer });
+  };
 
   render(): JSX.Element {
     return (
@@ -41,14 +68,14 @@ export class NavFilter extends Component<Props> {
         <Dropdown
           items={this.props.colors}
           title="Color"
-          selectItem={this.props.selectColor}
+          selectItem={this.selectColor}
           selectedItem={this.props.selectedColor}
           defaultItem="All car colors"
         />
         <Dropdown
           items={this.props.manufacturers}
-          title="Manufacture"
-          selectItem={this.props.selectManufacturer}
+          title="Manufacturer"
+          selectItem={this.selectManufacturer}
           selectedItem={this.props.selectedManufacturer}
           defaultItem="All Manufacturers"
         />
@@ -79,7 +106,8 @@ const dispatchProps = {
   selectColor: colorsActions.selectColor,
   getManufacturers: manufacturersActions.getManufacturersRequest,
   selectManufacturer: manufacturersActions.selectManufacturer,
-  getCars: carsActions.getCarsRequest
+  getCars: carsActions.getCarsRequest,
+  push
 };
 
 export const NavFilterContainer = connect(
