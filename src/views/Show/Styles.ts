@@ -5,6 +5,9 @@ import { colors } from '../../utils/theme';
 export const ShowContainer = styled.div``;
 
 export const CarHeader = styled.div`
+  background-image: ${({ src }: { src: string }) => `url(${src})`};
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: ${colors.lightGray};
   height: 300px;
 `;

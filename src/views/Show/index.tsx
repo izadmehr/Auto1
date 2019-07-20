@@ -18,6 +18,7 @@ import selectedCarActions, {
 import { RootState } from '../../stores';
 import { FavouriteBoxContainer } from './FavouriteBox';
 import { CarType } from '../../stores/cars';
+import { Image } from '../../components/Table/Row/Styles';
 
 interface States {
   car: CarType;
@@ -45,7 +46,7 @@ export class ShowComponent extends React.Component<Props, States> {
 
     return (
       <ShowContainer>
-        <CarHeader />
+        <CarHeader src={car.pictureUrl} alt={car.modelName} />
         <Row>
           <ShowContent>
             <CarTitle>{`${car.manufacturerName} ${car.modelName}`}</CarTitle>
