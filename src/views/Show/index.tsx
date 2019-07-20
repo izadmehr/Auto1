@@ -46,7 +46,7 @@ export class ShowComponent extends React.Component<Props, States> {
 
     return (
       <ShowContainer>
-        <CarHeader src={car.pictureUrl} alt={car.modelName} />
+        <CarHeader src={car.pictureUrl} />
         <Row>
           <ShowContent>
             <CarTitle>{`${car.manufacturerName} ${car.modelName}`}</CarTitle>
