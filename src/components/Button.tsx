@@ -1,6 +1,7 @@
 // A standard button.
-import styled from "styled-components";
-import {colors} from "../utils/theme";
+import styled from 'styled-components';
+
+import { colors } from '../utils/theme';
 
 export const Button = styled.button`
   width: 128px;

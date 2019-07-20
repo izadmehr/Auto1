@@ -7,7 +7,7 @@ import { CarType } from './cars';
 
 const { Types, Creators } = createActions({
   add: ['car'],
-  remove: ['id']
+  remove: ['stockNumber']
 });
 
 export const FavouritesActionsTypes = Types;
@@ -31,7 +31,14 @@ export const INITIAL_STATE = Immutable<State>({
 
 export const FavouritesSelectors = {
   getData: ({ favourites }: { favourites: FavouritesState }): FavouritesType =>
-    favourites.data
+    favourites.data,
+  isFavorited: (
+    { favourites }: { favourites: FavouritesState },
+    stockNumber: number
+  ): boolean =>
+    favourites.data.some(
+      (favourite): boolean => favourite.stockNumber === stockNumber
+    )
 };
 
 /* ------------- Reducers ------------- */
@@ -45,14 +52,21 @@ const add = (
 // Remove from favourites by id
 const remove = (
   state: FavouritesState,
-  { car }: { car: CarType }
-): FavouritesState => state.set('data', state.data.concat(car));
+  { stockNumber }: { stockNumber: number }
+): FavouritesState =>
+  state.set(
+    'data',
+    state.data.filter(
+      (favourite): boolean => favourite.stockNumber !== stockNumber
+    )
+  );
 
 export const favouritesReducer = createReducer<
   FavouritesState,
   {
     type: string;
     car: CarType;
+    stockNumber: number;
   }
 >(INITIAL_STATE, {
   [Types.ADD]: add,

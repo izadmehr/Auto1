@@ -16,7 +16,7 @@ import selectedCarActions, {
   SelectedCarSelectors
 } from '../../stores/selectedCar';
 import { RootState } from '../../stores';
-import FavouriteBox from './FavouriteBox';
+import { FavouriteBoxContainer } from './FavouriteBox';
 import { CarType } from '../../stores/cars';
 
 interface States {
@@ -59,7 +59,7 @@ export class ShowComponent extends React.Component<Props, States> {
               conditions.
             </CarDescription>
           </ShowContent>
-          <FavouriteBox />
+          <FavouriteBoxContainer />
         </Row>
       </ShowContainer>
     );

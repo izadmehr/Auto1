@@ -6,13 +6,14 @@ import { carsReducer, CarsState } from './cars';
 import { colorsReducer, ColorsState } from './colors';
 import { manufacturersReducer, ManufacturersState } from './manufacturers';
 import { selectedCarReducer, SelectedCarState } from './selectedCar';
-import { favouritesReducer } from './favourites';
+import { favouritesReducer, FavouritesState } from './favourites';
 
 export interface RootState {
   cars: CarsState;
   colors: ColorsState;
   manufacturers: ManufacturersState;
   selectedCar: SelectedCarState;
+  favourites: FavouritesState;
 }
 
 const rootReducer = (history: History): Reducer =>
