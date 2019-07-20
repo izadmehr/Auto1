@@ -13,6 +13,7 @@ export const Row = styled.div`
   display: flex;
   max-width: 800px;
   margin: auto;
+  padding: 0 1.5rem;
 `;
 export const ShowContent = styled.div`
   width: 65%;

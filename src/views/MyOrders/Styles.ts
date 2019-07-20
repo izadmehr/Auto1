@@ -7,6 +7,10 @@ export const CarsContainer = styled.div`
   padding-top: 1.5rem;
   margin: auto;
   width: 800px;
+  @media (max-width: 800px) {
+    width: auto;
+    padding: 1.5rem;
+  }
 `;
 
 export const NoSelected = styled.p`
