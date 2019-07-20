@@ -8,7 +8,7 @@ import { NoMatch } from './views/404';
 import { Header } from './views/layout/Header';
 import { Footer } from './views/layout/Footer';
 import { Show } from './views/Show';
-import {MyOrders} from "./views/MyOrders";
+import { MyOrders } from './views/MyOrders';
 
 const Body = styled.main`
   font-family: 'Roboto', sans-serif;

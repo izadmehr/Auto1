@@ -1,5 +1,5 @@
 import { combineReducers, Reducer } from 'redux';
-import { connectRouter } from 'connected-react-router';
+import { connectRouter, RouterState } from 'connected-react-router';
 import { History } from 'history';
 
 import { carsReducer, CarsState } from './cars';
@@ -9,6 +9,7 @@ import { selectedCarReducer, SelectedCarState } from './selectedCar';
 import { favouritesReducer, FavouritesState } from './favourites';
 
 export interface RootState {
+  router: RouterState;
   cars: CarsState;
   colors: ColorsState;
   manufacturers: ManufacturersState;
